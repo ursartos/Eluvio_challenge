@@ -11,7 +11,7 @@ The program should display:
 - the file names where the largest strand appears
 - the offset where the strand appears in each file
 
-Solution:
+Solution in python:
 Used Dynamic Programming and a complete graph holding all possible file pairs to determine all files with the longest byte strand.
 For n files and k number of bytes in the largest file,
 Time Complexity is O(n^2k^2)
