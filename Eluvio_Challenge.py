@@ -68,17 +68,6 @@ def least_of_two(A, B):
 					curr_max = A[i - max_len + 1:i]
 					offset_A = i - max_len + 1
 					offset_B = j - max_len + 1
-			# if (A[i] == B[j]):
-			# 	if (i==0 or j == 0 or not (i-1)*a+j-1 in C):
-			# 		C[i*a+j] = 1
-			# 	else:
-			# 		C[i*a+j] = C[(i-1)*a+j-1] + 1
-			# 	if (C[i*a+j] > max_len):
-			# 		max_len = C[i*a+j]
-			# 		curr_max = A[i - max_len + 1:i]
-			# 		offset_A = i - max_len + 1
-			# 		offset_B = j - max_len + 1
-
 	max_byte = 0
 	for i in range(len(curr_max),0):
 		max_byte = max_byte or curr_max[i]
@@ -88,7 +77,8 @@ def least_of_two(A, B):
 
 ###  called by main function with arguments sys.argv for file names and 2 dimensional input_array 
 # containing the contents of each file separated by byte ###
-# For number of files, n, least_of_two is run n(n-1)/2 times (number of edges in a complete graph)
+# For number of files, n, least_of_two is run n(n-1)/2 times (number of edges in a complete graph) each run taking O(k^2) where k is
+# the number of bytes in the largest file.
 def graph_pairs(input_array, args):
 	G = Graph(input_array, args)
 	max_val = 0
@@ -106,10 +96,7 @@ def graph_pairs(input_array, args):
 	return max_list
 
 ###  main function, called with argument sys.argv ###
-# For number of files, a, 
-# number of args = a
-# number of resulting edges in max_list = e
-# main runs in O(a + e)
+# For number of bytes in the largest file, k, and number of files, n, main runs in O(n^2*k^2) time with O(nk) space complexity to hold input_array
 def main(args):
 	input_array = [0]*(len(args)-1)
 	for i in range(1,len(args)):
